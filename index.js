@@ -49,7 +49,6 @@ loadImageArray('pasted_MsCayCqGub.jpg', (w, h, data) => {
             k += 4;
         }
     }
-    console.log(hist);
     let values = Object.keys(hist).filter(value => hist[value] > 20);
     values.forEach(value => {
         const r = value >> 16;
