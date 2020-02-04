@@ -38,7 +38,11 @@ function displayImageArray(w, h, data) {
 //       displayImageArray(w, h, target);
 //   }
 
-loadImageArray('pasted_MsCayCqGub.jpg', (w, h, data) => {
+const imgurl = 'pasted_MsCayCqGub.jpg';
+// const imgurl = 'pasted_eY0lgcx2MG.jpg';
+$('img').attr('src', imgurl);
+
+loadImageArray(imgurl, (w, h, data) => {
     console.log('width, height', w, h);
     let hist = {};
     let k = 0;
