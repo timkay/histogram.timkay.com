@@ -6,8 +6,8 @@ function loadImageArray(url, cb) {
     let img = new Image();
     img.src = url;
     img.onload = event => {
-        let w = Math.min(img.naturalWidth, 500);
-        let h = Math.min(img.naturalHeight, 300);
+        let w = img.naturalWidth || Math.min(img.naturalWidth, 500);
+        let h = img.naturalHeight || Math.min(img.naturalHeight, 300);
         let ctx = $(`<canvas width="${w}" height="${h}"/>`)[0].getContext('2d');
         ctx.drawImage(img, 0, 0);
         cb(w, h, ctx.getImageData(0, 0, w, h).data);
@@ -38,11 +38,6 @@ function displayImageArray(w, h, data) {
 //       displayImageArray(w, h, target);
 //   }
 
-// const imgurl = 'pasted_MsCayCqGub.jpg';
-// const imgurl = 'pasted_eY0lgcx2MG.jpg';
-// const imgurl = 'pasted_dVz8XByBZ7.jpg';
-// const imgurl = 'pasted_7wGRfLbLPk.jpg';
-// const imgurl = 'pasted_MYGkVdO8nK.jpg';
 const imgurl = 'pasted_NQMQZtdU0t.jpg';
 $('#img').attr('src', imgurl);
 
@@ -58,7 +53,9 @@ function go(url) {
             }
         }
         $('#histogram').html('');
-        let values = Object.keys(hist).filter(value => hist[value] > 20);
+        let values = Object.keys(hist)
+            .filter(value => hist[value] > 20)
+            .sort((a, b) => hist[b] - hist[a]);
         values.forEach(value => {
             const r = value >> 16;
             const g = (value >> 8) & 255;
