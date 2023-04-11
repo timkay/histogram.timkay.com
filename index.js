@@ -69,6 +69,7 @@ $('body').on('paste', function (event) {
     let items = (event.clipboardData || event.originalEvent.clipboardData).items;
     for (let index in items) {
         let item = items[index];
+        console.log('paste', item.kind, item);
         if (item.kind === 'file') {
             let blob = item.getAsFile();
             let reader = new FileReader();
