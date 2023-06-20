@@ -2,8 +2,16 @@ body {
     background: GhostWhite;
 }
 .swatch {
-    width: 100px;
+    width: 300px;
     height: 20px;
-    margin: 3px;
-    text-align: center;
+    padding: 3px;
+}
+.swatch > pre {
+    margin: 0;
+    padding: 3px;
+}
+.swatch > pre > span {
+    float: right;
+    margin: 0;
+    padding: 0;
 }

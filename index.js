@@ -60,7 +60,9 @@ function go(url) {
             const r = value >> 16;
             const g = (value >> 8) & 255;
             const b = value & 255;
-            $('#histogram').append(`<div class="swatch" style="background: rgb(${[r, g, b]})">${hist[value]}</div>`);
+            const toHex = (r, g, b) => '#' + [r, g, b].map(x => x.toString(16).padStart(2, '0')).join('');
+            const color = 0.3 * r + 0.6 * g + 0.1 * b < 128? '#fff': '#000';
+            $('#histogram').append(`<div class="swatch" style="background: rgb(${[r, g, b]}); color: ${color}"><pre>${toHex(r, g, b)} &nbsp; rgb(${[r, g, b]}) <span>${hist[value]}</span></pre></div>`);
         })
     });
 }
